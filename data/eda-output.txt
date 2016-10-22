@@ -1,0 +1,56 @@
+summary table of Income     Income      
+ Min.   : 10.35  
+ 1st Qu.: 21.01  
+ Median : 33.12  
+ Mean   : 45.22  
+ 3rd Qu.: 57.47  
+ Max.   :186.63  
+
+summary table of Limit     Limit      
+ Min.   :  855  
+ 1st Qu.: 3088  
+ Median : 4622  
+ Mean   : 4736  
+ 3rd Qu.: 5873  
+ Max.   :13913  
+
+summary table of Rating     Rating     
+ Min.   : 93.0  
+ 1st Qu.:247.2  
+ Median :344.0  
+ Mean   :354.9  
+ 3rd Qu.:437.2  
+ Max.   :982.0  
+
+summary table of Cards     Cards      
+ Min.   :1.000  
+ 1st Qu.:2.000  
+ Median :3.000  
+ Mean   :2.958  
+ 3rd Qu.:4.000  
+ Max.   :9.000  
+
+summary table of Age      Age       
+ Min.   :23.00  
+ 1st Qu.:41.75  
+ Median :56.00  
+ Mean   :55.67  
+ 3rd Qu.:70.00  
+ Max.   :98.00  
+
+summary table of Education   Education    
+ Min.   : 5.00  
+ 1st Qu.:11.00  
+ Median :14.00  
+ Mean   :13.45  
+ 3rd Qu.:16.00  
+ Max.   :20.00  
+
+summary table of Balance    Balance       
+ Min.   :   0.00  
+ 1st Qu.:  68.75  
+ Median : 459.50  
+ Mean   : 520.01  
+ 3rd Qu.: 863.00  
+ Max.   :1999.00  
+
