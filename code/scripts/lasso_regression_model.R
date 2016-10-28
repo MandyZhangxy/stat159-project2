@@ -1,6 +1,8 @@
 library(glmnet)
 set.seed(200)
 
+scaled_credit <- read.csv("../../data/scaled_credit.csv", stringsAsFactors=FALSE)
+load("../../data/training_and_testing.RData")
 
 lasso_cv = cv.glmnet(x_training, y_training, alpha=1, intercept = FALSE,
                           standardize = FALSE)
