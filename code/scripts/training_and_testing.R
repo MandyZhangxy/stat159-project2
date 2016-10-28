@@ -8,4 +8,15 @@ sample = sample(1:dim(scaled_credit)[1], sample_size, replace= FALSE)
 training_set <- scaled_credit[sample,]
 testing_set <- scaled_credit[-sample,]
 
-save(training_set, testing_set, file = '../../data/training_and_testing.RData')
+#Setting Training and Testing Vectors
+
+x_training = training_set[ ,-12]
+y_training = training_set[ ,12]
+
+x_testing = testing_set[ ,-12]
+y_testing = testing_set[ ,12]
+
+
+#Storing these vectors into RData
+save(training_set, testing_set, x_training, y_training, x_testing, y_testing, file = '../../data/training_and_testing.RData')
+
