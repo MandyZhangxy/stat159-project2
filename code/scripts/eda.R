@@ -1,6 +1,6 @@
 ####################################################
 ##loads dataset
-
+setwd(file.path(getwd()))
 Credit <- read.csv("../../data/Credit.csv", stringsAsFactors=FALSE)
 str(Credit)
 
