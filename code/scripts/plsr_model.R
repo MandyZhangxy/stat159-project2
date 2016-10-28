@@ -21,10 +21,10 @@ plsr_mse = mean((y_hat - y_testing)^2)
 
 #refitting:
 plsr_refit = plsr(Balance ~., data = data.frame(scaled_credit), ncomp = plsr_best)
-summary(plsr_refit)
+plsr_coef = coef(plsr_refit)
 
 # save and output:
-save(plsr_cv, plsr_best, plsr_mse, plsr_refit, file = "../../data/plsr_model.RData")
+save(plsr_cv, plsr_best, plsr_mse, plsr_refit, plsr_coef, file = "../../data/plsr_model.RData")
 
 sink(file = "../../data/plsr-output.txt")
 cat("\n Partial Least Squares Regression Model \n")

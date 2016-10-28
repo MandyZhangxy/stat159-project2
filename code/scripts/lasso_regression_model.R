@@ -22,11 +22,11 @@ x = scaled_credit[ ,-12]
 y = scaled_credit[ ,12]
 
 
-lasso_output = glmnet(x, y, alpha = 1, intercept = FALSE)
-lasso_coef = predict(lasso_output, s = best_lambda, type = "coefficients")[1:12, ]
+lasso_refit = glmnet(x, y, alpha = 1, intercept = FALSE)
+lasso_coef = predict(lasso_refit, s = best_lambda, type = "coefficients")[1:12, ]
 
 
-save(lasso_cv, best_lambda, lasso_mse, lasso_coef, file = "../../data/lasso_model.RData")
+save(lasso_cv, best_lambda, lasso_mse, lass_reift, lasso_coef, file = "../../data/lasso_model.RData")
 
 sink(file = "../../data/lasso-output.txt")
 cat("\nLasso Regression Model \n")
