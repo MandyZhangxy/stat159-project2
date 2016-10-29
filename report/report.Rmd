@@ -20,3 +20,6 @@ In this report, in order to yield better prediction accuracy and model interpret
 
 
 
+# Data
+The data set is a CSV file avaiable in [http://www-bcf.usc.edu/~gareth/ISL/Credit.csv](http://www-bcf.usc.edu/~gareth/ISL/Credit.csv). It contains `balance` (average credit card debt for a number of individuals) as well as 10 quantitative predictors: `age`, `cards`(number of credit cards), `rating`(credit rating), `education` (year of education), `income`(in thousands of dollars), `limit`(credit limit), `gender`, `student`(student status), `status`(marital status), and `ethnicity`(Caucasian, African American or Asian). 
+
