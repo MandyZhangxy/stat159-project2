@@ -1,0 +1,19 @@
+[1] 0.01747528
+12 x 1 sparse Matrix of class "dgCMatrix"
+                               1
+(Intercept)         0.0029223906
+X                  -0.0000354645
+Limit               0.4629500095
+Rating              0.4023741488
+Cards               0.0575032662
+Age                -0.0931882134
+Education           0.0111997509
+GenderFemale        0.0117524399
+StudentYes          0.2541391469
+MarriedYes         -0.0587981992
+EthnicityAsian      0.0186121655
+EthnicityCaucasian  0.0260206746
+
+ The Test mse is: 
+[1] 0.1870197
+
