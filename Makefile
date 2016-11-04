@@ -23,7 +23,9 @@ eda:
 training_testing:
 	cd code/scripts/ && Rscript training_and_testing.R
 
+# run the unit tests of functions
 test:
+	cd code/ && Rscript "test-that.R"
 
 # perform ols and save in Rdata
 ols:
