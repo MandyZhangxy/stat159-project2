@@ -66,7 +66,20 @@ cat("\n")
 sink()
 
 #conditional boxplot
-
+library(fields)
+#Gender', 'Student', 'Married', 'Ethnicity
+png('../../images/Balance_vs_Credit.png')
+boxplot(Credit$Balance~Credit$Gender)
+dev.off()
+png('../../images/Balance_vs_Student.png')
+boxplot(Credit$Balance~Credit$Student)
+dev.off()
+png('../../images/Balance_vs_Married.png')
+boxplot(Credit$Balance~Credit$Married)
+dev.off()
+png('../../images/Balance_vs_Ethnicity.png')
+boxplot(Credit$Balance~Credit$Ethnicity)
+dev.off()
 #####################################################
 ##Pre-modeling data processing
 
