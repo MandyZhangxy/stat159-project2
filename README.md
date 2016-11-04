@@ -4,8 +4,6 @@ This repository holds the second project for the fall 2016 Statistics 159 at UC 
 
 This assignment is about applying the computational toolkit (plus R) to reproduce regression analysis collaboratively in teams of two members. More specifically, the idea is to reproduce the analysis from sections 6.2, 6.3, 6.6 and 6.7 in Chapter 6:*Linear Model Selection and Regularization*, from the book "An introduction to Statistical Learning" (by James et at) at http://www-bcf.usc.edu/~gareth/ISL/.
 
-The purpose of this assignment is to extend the scope of the previous HW2. In addition to keep applying regression analysis in R -- using `lm()`-- I will also write some functions as well as their unit tests. 
-
 In this repository 
 ```
 stat159-project2/
@@ -40,7 +38,7 @@ stat159-project2/
 3. run the Makefile by command `make` and then it will execute all scripts and get all output such as `report.pdf`.
 
 
-Author: Xinyu Zhang Zhongling Jiang
+Author: Xinyu Zhang, Zhongling Jiang
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>. 
 
