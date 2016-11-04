@@ -19,11 +19,31 @@ $$\sum_{i=1}^n{\left(y_i-\beta_0 - \sum_{j=1}^p{\beta_jx_{ij}}\right)^2} + \lamb
 where $\lambda \geq 0$ is a *tunig parameter*, to be determined separately. Equation trades off two different criteria. as with least squares, ridge regression seeks coefficinet estimates that fit the data well, by making the RSS small. however, the second term, $\lambda\sum_{j=1}^p{\beta_j^2}$, called a *shrinkage penalty*, is small when $\beta_1,...,\beta_p$ are close to zero, and so it has the effect of *shrinking* the estimates of $\beta_j$ towards zero. The tunning parameter $\lambda$ serves to control the relative impact of these two terms on the regression coefficient estiamtes. 
 
 ### Lasso Regression
+Ridge regression does have one obvious disadvantage. It includes all *p* predictors in the final model. The penalty $\lambda \sum{\beta_j^2}$ will shrink all of the coefficients towards zero. but it will not set any of them exactly to zero (unless $\lambda = \infty$). It can create a challenge in model interpretation in settings in which the number of vairables *p* is quite large. The *lasso* is a relatively recent alternative to ridge regression that overcomes this disadvantage. The lasso coefficients, $\hat{\beta_{\lambda}^L}$, minimize the quantity
+$$\sum_{i=1}^n\left(y_i - \beta_0 - \sum_{j=1}^p{\beta_jx_{ij}}\right)^2 + \lambda\sum_{j=1}^p{|\beta_j|} = RSS + \lambda\sum_{j=1}^p{|\beta_j|}$$
 
+The lasso shrinks the coefficient estiamtes towards zero. However, in the case of the lasso, the $l_1$ penalty (In statistical parlance, the lasso uses $l_1$ penalty instead of an $l_2$ penalty. The $l_1$ nrom of a coefficient vector $\beta$ is given by $||\beta||_1 = \sum{|\beta_j|}$) has the effect of forcing some of the coefficient estiamtes to be exactly equal to zero when the tuning parameter $\lambda$ is sufficiently large. Hence, much like best subset selection, the lasso performs *variable selection*. As a result, models generated from the lasso are generally much easier to interpret than those produced by ridge regression. We say that the lasso yields *sparse* models -- that is, models that involve only a subset of the vairbales. 
 
 ## Dimension Reduction Method
 This approach involves *prejecting* the `p` predictors into a *M*-dimensional subsapce, where M < p. This is achieved by computing *M* different *linear combinations*, or *projections*, of the variables. Then these *M* projections are used as predictors to fit a linear regression model by least squares. 
 
+We now explore a class of approaches that *transform* the predictors and then fit a least squares model using the transformed variabels. We will refer to these techniques as *dimension reduction methods*.
+
+Let $Z_1,Z_2,..., Z_M$ represent $M < p$ linear combinations of our original p predictors. That is,
+
+$$Z_m = \sum_{j=1}^p{\phi_{jm}X_j}$$
+
+for some constants $\phi_{1m}, \phi_{2m}, .., \phi_{pm}, m = 1,.., M$. We can then fit the linear regression model using least squares.
+
+$$ y_i = \theta_0 + \sum_{m=1}^M{\theta_mz_{im}} + \epsilon_i, i = 1,...,n$$
+
+All dimension reduction methods work in two steps. First, the transformed predictors $Z_1, Z_2,..., Z_M$ are obtained. Second, the model is fit using these M predictors. however, the choice of $Z_1,Z_2,...,Z_M$, or equivalently, the selection of the $\phi_{jm}$'s, can be achieved in different ways. So we will consider two approaches for this talk: *principal componets* and *partial least squares*.
+
 ### Principal Components Regression (PCR)
+*Principal components analysis* (PCA) is a popular approach for deriving a low-dimensional set of features from a large set of variables. It's a dimension reduction technique for regression of a $n \times p$ data matrix $X$. The *first principal component* direction of the data is that along which the observations *vary the most*. 
+
+The first principal component vector defines the line taht is *as close as possible* to the data. The first principal component line minimizes the sum of the squared perpendicular distances between each point and the line. 
+
+In general, one can construct up to p distinct principal components. The second principal component $Z_2$ is linear combination of the variables that is uncorrelated with $Z_1$, and has largest variance subject to this constraint. With more predictors, then more additional componetns could be constructed. They would successively maximize variance, subject to the constraint of being uncorrelated with the preceding components. 
 
 ### Partial Least Square Regression (PLSR)
