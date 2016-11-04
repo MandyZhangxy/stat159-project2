@@ -6,9 +6,9 @@ credit = data/Credit.csv
 scaled_credit = data/scaled_credit.csv
 
 
-.PHONY: data tests eda regression report clean all
+.PHONY: data tests eda ols ridge pcr plsr regressions report clean all slides session
 
-all: data eda training_testing regression report
+all: data eda training_testing regressions report
 
 #downlaod credit.csv
 data:
@@ -44,7 +44,7 @@ plsr:
 	cd code/scripts/ && Rscript plsr_model.R
 
 # run all 5 regressions
-regression:
+regressions:
 	make ols
 	make ridge
 	make lasso
