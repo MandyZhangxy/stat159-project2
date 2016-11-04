@@ -1,8 +1,6 @@
 library(glmnet)
-set.seed(200)
 # setwd("/Users/MandyZhang/Desktop/stat_159/project2/")
 scaled_credit <- read.csv("../../data/scaled_credit.csv", stringsAsFactors=FALSE)
-scaled_credit = scaled_credit[ ,-1]
 load("../../data/training_and_testing.RData")
 
 grid = 10^seq(10, -2, length = 100)
@@ -10,10 +8,9 @@ lasso_cv = cv.glmnet(as.matrix(x_training), as.matrix(y_training), alpha=1, inte
                      standardize = FALSE)
 best_lambda = lasso_cv$lambda.min
 
-png(file = "../../images/lasso-images/lasso-cv-errors.png")
+png(file = "../../images/lasso-cv-errors.png")
 plot(lasso_cv)
 dev.off()
-
 
 y_hat = predict(lasso_cv, s = best_lambda, newx = data.matrix(x_testing))
 r_squared = (y_testing - y_hat)^2

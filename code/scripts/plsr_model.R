@@ -7,7 +7,7 @@ plsr_cv = plsr(Balance ~., data = data.frame(training_set), validation = "CV")
 summary(plsr_cv)
 
 #cross-validation error plot:
-png(file = "images/plsr-cv-errors.png")
+png(file = "../../images/plsr-cv-errors.png")
 validationplot(plsr_cv, val.type = "MSEP")
 dev.off()
 
