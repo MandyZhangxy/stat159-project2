@@ -45,7 +45,7 @@ stat159-project2/
 - `tests:` will run the unit tests of your functions
 - `eda:` will perform the exploratory data analysis
 - `ols`: OLS regression
-- `ridge`: Rdige Regression
+- `ridge`: Ridge Regression
 - `lasso`: Lasso Regression
 - `pcr`: Principal Components Regression
 - `plsr`: Partial Least Squares Regression
