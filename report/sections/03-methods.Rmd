@@ -46,4 +46,18 @@ The first principal component vector defines the line taht is *as close as possi
 
 In general, one can construct up to p distinct principal components. The second principal component $Z_2$ is linear combination of the variables that is uncorrelated with $Z_1$, and has largest variance subject to this constraint. With more predictors, then more additional componetns could be constructed. They would successively maximize variance, subject to the constraint of being uncorrelated with the preceding components. 
 
+PCR approach involves constructing the first $M$ principal components, $Z_1, Z_2,..., Z_M$, and then using these components as the predictors in a linear regression model that is fit using least squares. The key idea is that often a small number of principal components suffice to explain most of the vairability in the data, as well as the relationship with the response. In other words, we assuem that *the directions in which* $X_1, ..., X_p$ *show the most variation are the directions that are associated with Y*. While this assumption is not guaranteed to be true, it often turns out to be a reasonable enough approximation to give good results.
+
+Even though PCR provides a simple way to perform regression using $M < p$ predictors, it is not a feature selection method. This is because each of the *M* principal components used in the regression is a linear combination of all p of the original features. In PCR, the number of principal components, *M*, is typically chosen by cross-validation.  
+
 ### Partial Least Square Regression (PLSR)
+We now present partial least squares (PLS), a *supervised* alternative to PCR. Like PCR, PLS is a dimension reduction method, which first identifies a new set of features $Z_1,...,Z_M$ that are linear combinations of the original features, and then fits a linear model via least squares using these *M* new features. But unlike PCR, PLS identifies these new features in a supervised way--that is, it makes use of the response `Y` in order to identify new features that not only approximate the old features well, but also that are related to the response. Roughly speaking, the PLS approach attempts to find directions that help explain both the response and the predictors.
+
+Compute the first PLS direction: after standardizing the *p* predictors, PLS computes the first direction $Z_1$ by setting each $\phi_{j1}$ in equal to the coefficient from the simple linear regression of *Y* onto $X_j$. One can show that this coefficient is proportional to the correlation between $Y$ and $X_j$. Hence, in computing $Z_1 = \sum_{j=1}^p{\phi_{j1}X_j}$, PLS places the highest weight on the vairables that are most strongly related to the response. 
+
+Compute the second PLS direction: we first *adjust* each of the variables for $Z_1$, by regressing each variable on $Z_1$ and taking *residuals*. These residuals can be interpreted as the remaining information that has not been explained by the first PLS direction. We then compute $Z_2$ using this *orthogonalized* data in exactly the same fashion as $Z_1$ was computed based on the original data. This iterative approach can be repoeated *M* times to identify multiple PLS cmoponents $Z_1,...,Z_M$. Finally, at the end of this procedure, we use least squares to fit a linear model to predict $Y$ using $Z_1,...,Z_M$ in exactly the same fashion as for PCR.
+
+PLS is popular in the field of chemometrics, where many variables arise from digitized spectrometry signals. In practice it often performs no better than ridge regression or PCR. While the supervised dimension reduction of PLS can reduce bias, it also has the potential to increase variance, so that the overall benefit of PLS relative to PCR is a wash.
+
+
+
