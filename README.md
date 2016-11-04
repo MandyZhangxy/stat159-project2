@@ -35,7 +35,25 @@ stat159-project2/
 ###For a "competent" user: if you want to recreate our analysis and report, you can:
 1. git clone the repository or download it.
 2. In your terminal,`cd` into directory
-3. run the Makefile by command `make` and then it will execute all scripts and get all output such as `report.pdf`.
+3. Run the Makefile in terminal by typing command `make clean` in order to remove old report
+4. Type `make` in terminal again and then it will execute all scripts and get all output such as `report.pdf`.
+
+### List of Make commands for phony targets
+
+- `all:` will be associated to phony targets `eda`, `regressions`, and `report`
+- `data:` will download the file `Credit.csv` to the folder `data/` 
+- `tests:` will run the unit tests of your functions
+- `eda:` will perform the exploratory data analysis
+- `ols`: OLS regression
+- `ridge`: Rdige Regression
+- `lasso`: Lasso Regression
+- `pcr`: Principal Components Regression
+- `plsr`: Partial Least Squares Regression
+- `regressions`: all five types of regressions
+- `report:` will generate `report.pdf` (or `report.html`)
+- `slides`: will generate `slides.html`
+- `session`: will generate `session-info.txt`
+- `clean:` will delete the generated report (pdf and/or html)
 
 
 Author: Xinyu Zhang, Zhongling Jiang
