@@ -95,7 +95,7 @@ print(aa, comment = FALSE)
 ```
 
 From the coefficient comparison table, we could find that all of five models agree on Income, Limit and Rating are significant predictors of the Balance. Four of the model agrees on the categorical variable 'Student' being a significant predictor, while PCR method excludes it.
-Among five models, lasso uses fewest predictors 
+Among five models, lasso uses fewest predictors, and OLS uses the most. 
 
 ## Comparing the MSE of 5 regression Models
 
@@ -106,3 +106,6 @@ colnames(house2) = c("ols", "ridge","lasso","pcr","plsr")
 bb = xtable(house2, caption = "MSE estiamtes for 5 regression models", digits = c(0,3,3,3,3,3))
 print(bb, comment = FALSE)
 ```
+
+According to the five model's mean square error, PCR model has the lowest MSE ,`pcr_mse`, showing it is a more precise predictive model. The other four models has similar MSE, around `ols_MSE`. Since `pcr_mse` is not much different from `ols_MSE`, we regard all five models are equally well-performing models, from which we tend to pick the ones with the fewest predictors. Lasso regression models use comparatively less predictors than other models, so we think it is the best fit model for this problem.
+
