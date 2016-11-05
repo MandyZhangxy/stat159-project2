@@ -3,12 +3,12 @@ Lasso Regression Model
 Best Lambda[1] 0.01
 
 Official coefficients
-   (Intercept)              X         Income          Limit         Rating 
-  0.0000000000   0.0001213065  -0.0189548575   0.0000000000   0.0000000000 
-         Cards            Age      Education   GenderFemale     StudentYes 
-  0.0000000000  -0.0188969317  -0.0134643084   0.0000000000  -0.0020839937 
-    MarriedYes EthnicityAsian 
-  0.0519715351  -0.5768065487 
+       (Intercept)             Income              Limit             Rating 
+      0.000000e+00      -5.513681e-01       7.813897e-01       5.111911e-01 
+             Cards                Age          Education       GenderFemale 
+      3.882763e-02      -1.676057e-02       0.000000e+00      -1.062175e-06 
+        StudentYes         MarriedYes     EthnicityAsian EthnicityCaucasian 
+      2.660694e-01       0.000000e+00       0.000000e+00       0.000000e+00 
 
 test MSE
 [1] 0.04867582

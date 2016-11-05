@@ -4,7 +4,7 @@ output: pdf_document
 
 #Results
 
-```{r, echo = False}
+```{r, echo=FALSE}
 load("../../data/lasso_model.RData")
 load("../../data/OLS.RData")
 load("../../data/all_ridge_mods.RData")
@@ -12,6 +12,7 @@ load("../../data/pcr_fit.RData")
 load("../../data/plsr_model.RData")
 library(xtable)
 library(knitr)
+
 ```
 
 ##Ridge
@@ -20,9 +21,9 @@ The best lambda equals `r best_lambda`, and the test mse is `r test_mse`.
 The coefficient of fitting the full data is following:
 
 ```{r xtable1, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
-load("../../data/all_ridge_mods.RData")
-ridgecoef <- xtable(ridge_coef)
-print(ridgecoef)
+
+ridgecoef <- xtable(as.matrix(ridge_coef))
+print(ridgecoef,comment = FALSE)
 ```
 
 ##Lasso
@@ -31,8 +32,8 @@ The best lambda is `r best_lambda`, and the lasso test MSE is `r lasso_mse`.
 The refitting coefficients is the following:
 ```{r xtable2, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
 load("../../data/lasso_model.RData")
-lassocoef <- xtable(lasso_coef)
-print(lassocoef)
+lassocoef <- xtable(as.matrix(lasso_coef))
+print(lassocoef,comment = FALSE)
 ```
 We observe some coefficients could reduce to zero because of the special regularizing term the lasso regression has.
 
@@ -42,8 +43,8 @@ Now we use a different method, the principle component methods to fit on the tra
 The coefficients of PCR model refitting on full data set is:
 ```{r xtable3, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
 load("../../data/pcr_fit.RData")
-pcrcoef <- xtable(pcr.coef)
-print(pcrcoef)
+pcrcoef <- xtable(as.matrix(pcr.coef))
+print(pcrcoef,comment = FALSE)
 ```
 
 ##PLSR
@@ -51,8 +52,8 @@ We slightly change our method to PLSR. The optimal number of principle component
 The coefficient of refitting PLSR model on full dataset is:
 ```{r xtable4, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
 load("../../data/plsr_model.RData")
-plsrcoef <- xtable(plsr_coef)
-print(plsrcoef)
+plsrcoef <- xtable(as.matrix(plsr_coef))
+print(plsrcoef,comment = FALSE)
 ```
 
 #OLS
@@ -60,7 +61,21 @@ At last we look at the ordinary least square regression:
 The coefficients of the model that includes all predictors is:
 ```{r xtable5, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
 load("../../data/OLS.RData")
-olscoef <- xtable(OLS_summary$coefficients)
-print(olscoef)
+olscoef <- xtable(OLS_summary$coefficients, caption = "OLS coefficients")
+print(olscoef,comment = FALSE)
 ```
 The R-square is `r OLS_summary$r.squared`. The Residual Standard Error is `r OLS_summary$sigma`
+
+
+
+
+Below is the table for OLS regression summary. As we can see, certain coefficients comes with a relatively high p-value, like education and ethnicity which suggests that they may not be significant. Also, if we look at the absolute value of the estimated coefficients, we can see that income, limit and ratins dominate the change in reponse variable, which suggests that we should try principal components regression that will ignore trivial variables.
+
+{r results= 'asis', echo = FALSE}
+library(xtable)
+library(Matrix)
+options(xtable.comment = FALSE,
+        xtable.table.placement = "H")
+load("../data/OLS/OLS-regression.RData")
+print(xtable(ols_reg_sum$coefficients, caption = 'OLS Coefficients',digits = c(0,5,5,5,5)), comment = FALSE)
+```
