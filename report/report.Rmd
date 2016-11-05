@@ -155,10 +155,6 @@ All output we saved and plots we got will be anaylysis in next section -- `Resul
  
 
 
----
-output: pdf_document
----
-
 #Results
 
 ```{r, echo=FALSE}
@@ -190,10 +186,7 @@ We perform ridge regresssion on the centered Credit training data, and obtain th
 The coefficient of fitting the full data is following:
 
 ```{r xtable1, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
-ridge_coefficients = as.vector(ridge_coef)
-ridge_coefficients = as.data.frame(ridge_coefficients)
-ww = rownames(ridge_coef)
-row.names(ridge_coefficients) = ww
+ridge_coefficients = as.matrix(ridge_coef)
 colnames(ridge_coefficients) <- "Estimate"
 ridgecoef <- xtable( ridge_coefficients, caption = "Ridge Coefficients", digits = c(0,3))
 print(ridgecoef,comment = FALSE)
@@ -245,7 +238,7 @@ print(plsrcoef,comment = FALSE)
 ## Comparing the Coefficient Estimates for 5 regression models
 ```{r xtable6, results="asis", echo = FALSE, warning = FALSE, comment = FALSE, message = FALSE}
 ols_co = OLS_summary$coefficients[-1,1]
-ridge_co = ridge_coefficients[-1,]
+ridge_co = ridge_coefficients[-1]
 lasso_co = lasso_coefficients[-1]
 house = cbind(ols_co,ridge_co, lasso_co,pcr_coef,plsr_coef)
 colnames(house) = c("ols", "ridge","lasso","pcr","plsr")
@@ -253,6 +246,8 @@ aa = xtable(house, caption = "coefficients estiamtes for 5 regression models", d
 print(aa, comment = FALSE)
 ```
 
+From the coefficient comparison table, we could find that all of five models agree on Income, Limit and Rating are significant predictors of the Balance. Four of the model agrees on the categorical variable 'Student' being a significant predictor, while PCR method excludes it.
+Among five models, lasso uses fewest predictors, and OLS uses the most. 
 
 ## Comparing the MSE of 5 regression Models
 
@@ -263,3 +258,11 @@ colnames(house2) = c("ols", "ridge","lasso","pcr","plsr")
 bb = xtable(house2, caption = "MSE estiamtes for 5 regression models", digits = c(0,3,3,3,3,3))
 print(bb, comment = FALSE)
 ```
+
+According to the five model's mean square error, PCR model has the lowest MSE ,`pcr_mse`, showing it is a more precise predictive model. The other four models has similar MSE, around `ols_MSE`. Since `pcr_mse` is not much different from `ols_MSE`, we regard all five models are equally well-performing models, from which we tend to pick the ones with the fewest predictors. Lasso regression models use comparatively less predictors than other models, so we think it is the best fit model for this problem.
+
+
+#Conclusion
+
+Combining the coefficients from all five regression models, we realize that variables Income, Rating, Limit and StuedentYes has a greater impact on predicting Balance than other regressors, whose values are close to 0. Each model has its own advantage and shortage. We need to carefully analyze them in different situations.
+For the dataset we work on in this project, we believe lasso model is the best fit according to the Mean Square Error and total numbers of predictors used. The reason is that the lasso model uses the fewest variables but achieves an ideal MSE. 
