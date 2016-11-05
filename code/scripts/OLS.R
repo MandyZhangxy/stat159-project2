@@ -1,5 +1,5 @@
 #perform ordinary linear regression
-scaled_credit <- read.csv("data/scaled_credit.csv", stringsAsFactors=FALSE)
+scaled_credit <- read.csv("../../data/scaled_credit.csv", stringsAsFactors=FALSE)
 scaled_credit = scaled_credit[,-1]
 model <- lm(Balance ~ .,data = scaled_credit)
 OLS_summary <-summary(model)

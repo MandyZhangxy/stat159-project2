@@ -167,6 +167,20 @@ All output we saved and plots we got will be anaylysis in next section -- `Resul
  
 
 
+## Results
+
+#OLS
+At last we look at the ordinary least square regression:
+The coefficients of the model that includes all predictors is:
+```{r xtable5, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
+load("../data/OLS.RData")
+olscoef <- xtable(OLS_summary$coefficients, caption = "OLS coefficients",digits = c(0,5,5,5,5))
+print(olscoef,comment = FALSE)
+```
+The R-square is `r OLS_summary$r.squared`. The Residual Standard Error is `r OLS_summary$sigma`. We find out that among these 11 coefficients, some of them have relatively high p-value. For exmaple, the corresponding values of categorical variables `eduaction`, `EthnicityAisan` , `EthnicityCaucasian`, `gender`, `Married status` are `r OLS_summary$coefficients["Education",4]`, `r OLS_summary$coefficients["EthnicityAsian",4]`,`r OLS_summary$coefficients["EthnicityCaucasian",4]`, `r OLS_summary$coefficients["GenderFemale",4]`,`r OLS_summary$coefficients['MarriedYes',4]` which are far bigger than 0.05. 
+
+In addition, we also find that the absolute value of the estimated coefficient `Income`, `Limit`, and `Rating` are `r abs(OLS_summary$coefficients['Income',1])`, `r OLS_summary$coefficients["Limit",1]`, `r OLS_summary$coefficients["Rating",1]` which are statistically significant. 
+
 
 
 

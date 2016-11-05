@@ -14,7 +14,7 @@ plot(ridge_mod)
 dev.off()
 #lambda.min is the value of λ λ that gives minimum mean cross-validated error.
 sink('../../data/ridge_coefficients.txt')
-best_lambda <- ridge_mod$lambda.min
+ridge_best_lambda <- ridge_mod$lambda.min
 ridge_coef <- coef(ridge_mod, s = "lambda.min")
 sink()
 #The other λ saved is lambda.1se, which gives the most regularized model such that error is within one standard error of the minimum.
@@ -24,10 +24,10 @@ sink()
 y_test = testing_set$Balance
 x_test = model.matrix(Balance ~.,testing_set)[,-1]
 ridge_mod_pred <- predict(ridge_mod, s=ridge_mod$lambda.min, newx = x_test)
-test_mse = mean((ridge_mod_pred - y_test)^2)
+ridge_test_mse = mean((ridge_mod_pred - y_test)^2)
 sink('../../data/ridge_coefficients.txt', append = TRUE)
 cat('\n The Test mse is: \n')
-print(test_mse)
+print(ridge_test_mse)
 cat("\n")
 sink()
 
@@ -42,4 +42,4 @@ cat("The coefficients of all predictors based on the best model on full dataset 
 print(result1)
 sink()
 
-save(ridge_mod, best_lambda, test_mse, out1, ridge_coef, file = '../../data/all_ridge_mods.RData')
+save(ridge_mod, ridge_best_lambda, ridge_test_mse, out1, ridge_coef, file = '../../data/all_ridge_mods.RData')

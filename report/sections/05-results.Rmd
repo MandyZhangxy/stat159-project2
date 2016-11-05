@@ -15,16 +15,49 @@ library(knitr)
 
 ```
 
+
+##OLS
+At last we look at the ordinary least square regression:
+The coefficients of the model that includes all predictors is:
+```{r xtable5, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
+load("../../data/OLS.RData")
+olscoef <- xtable(OLS_summary$coefficients, caption = "OLS coefficients",digits = c(0,5,5,5,5))
+print(olscoef,comment = FALSE)
+```
+The R-square is `r OLS_summary$r.squared`. The Residual Standard Error is `r OLS_summary$sigma`. We find out that among these 11 coefficients, some of them have relatively high p-value. For exmaple, the corresponding values of categorical variables `eduaction`, `EthnicityAisan` , `EthnicityCaucasian`, `gender`, `Married status` are `r OLS_summary$coefficients["Education",4]`, `r OLS_summary$coefficients["EthnicityAsian",4]`,`r OLS_summary$coefficients["EthnicityCaucasian",4]`, `r OLS_summary$coefficients["GenderFemale",4]`,`r OLS_summary$coefficients['MarriedYes',4]` which are far bigger than 0.05. 
+
+In addition, we also find that the absolute value of the estimated coefficient `Income`, `Limit`, and `Rating` are `r abs(OLS_summary$coefficients['Income',1])`, `r OLS_summary$coefficients["Limit",1]`, `r OLS_summary$coefficients["Rating",1]` which are statistically significant. 
+
+
+
 ##Ridge
 We perform ridge regresssion on the centered Credit training data, and obtain the following result:
 The best lambda equals `r best_lambda`, and the test mse is `r test_mse`.
 The coefficient of fitting the full data is following:
 
 ```{r xtable1, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
-
-ridgecoef <- xtable(as.matrix(ridge_coef))
+ridge_coefficients = as.matrix(ridge_coef)
+colnames(ridge_coefficients) <- "Estimate"
+ridgecoef <- xtable( ridge_coefficients, caption = "Ridge Coefficients", digits = c(0,5))
 print(ridgecoef,comment = FALSE)
 ```
+Using the outputs of the 10-fold cross-validation with minimum validation error, the $\lambda$ we get is $\lambda$ = `r best_lambda`.
+####
+
+```{r results= 'asis', echo = FALSE}
+
+load("../data/ridge/ridge-regression.RData")
+ridge_coef_matrix <- as.matrix(ridge_coef)
+colnames(ridge_coef_matrix) <- "Estimate"
+print(xtable(ridge_coef_matrix, caption = 'Ridge Coefficients',digits = c(0,5)), comment = FALSE)
+```
+
+The hyper-parameter $\lambda$ we get from cross validation with minimum validation error is $\lambda$ = `r ridge_bestlam`. The estimated coefficients are consistent with ones we get from OLS. Income, limit and ratings still dominate the change in reponse. Other trivial variabls, like cards and gender are given less influence because of introducing l2-norm in ridge regression.
+
+
+
+
+
 
 ##Lasso
 Then we fit lasso regression on the centered Credit training data.
@@ -56,26 +89,8 @@ plsrcoef <- xtable(as.matrix(plsr_coef))
 print(plsrcoef,comment = FALSE)
 ```
 
-#OLS
-At last we look at the ordinary least square regression:
-The coefficients of the model that includes all predictors is:
-```{r xtable5, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
-load("../../data/OLS.RData")
-olscoef <- xtable(OLS_summary$coefficients, caption = "OLS coefficients")
-print(olscoef,comment = FALSE)
-```
-The R-square is `r OLS_summary$r.squared`. The Residual Standard Error is `r OLS_summary$sigma`
 
 
 
 
-Below is the table for OLS regression summary. As we can see, certain coefficients comes with a relatively high p-value, like education and ethnicity which suggests that they may not be significant. Also, if we look at the absolute value of the estimated coefficients, we can see that income, limit and ratins dominate the change in reponse variable, which suggests that we should try principal components regression that will ignore trivial variables.
 
-{r results= 'asis', echo = FALSE}
-library(xtable)
-library(Matrix)
-options(xtable.comment = FALSE,
-        xtable.table.placement = "H")
-load("../data/OLS/OLS-regression.RData")
-print(xtable(ols_reg_sum$coefficients, caption = 'OLS Coefficients',digits = c(0,5,5,5,5)), comment = FALSE)
-```
