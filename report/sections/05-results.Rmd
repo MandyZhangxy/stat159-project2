@@ -94,6 +94,8 @@ aa = xtable(house, caption = "coefficients estiamtes for 5 regression models", d
 print(aa, comment = FALSE)
 ```
 
+From the coefficient comparison table, we could find that all of five models agree on Income, Limit and Rating are significant predictors of the Balance. Four of the model agrees on the categorical variable 'Student' being a significant predictor, while PCR method excludes it.
+Among five models, lasso uses fewest predictors 
 
 ## Comparing the MSE of 5 regression Models
 
