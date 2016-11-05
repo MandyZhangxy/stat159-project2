@@ -12,11 +12,11 @@ dev.off()
 
 #selecting the best number of components in the model:
 plsr_best = which.min(plsr_cv$validation$PRESS)
+plsr_best
 
 #test MSE:
 y_hat = predict(plsr_cv, x_testing, ncomp = plsr_best)
 plsr_mse = mean((y_hat - y_testing)^2)
-
 
 
 #refitting:
