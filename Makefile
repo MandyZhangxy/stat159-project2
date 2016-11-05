@@ -2,13 +2,15 @@
 rep = report/report.Rmd
 RMD = report/sections/*.Rmd
 images = images/*.png
-credit = data/Credit.csv
-scaled_credit = data/scaled_credit.csv
-
+lasso_r = data/lasso_model.RData
+ols_r = data/OLS.RData
+ridge_r = data/all_ridge_mods.RData
+pcr_r = data/pcr_fit.RData
+plsr_r = data/plsr_model.RData
 
 .PHONY: data tests eda ols ridge pcr plsr regressions report clean all slides session
 
-all: data eda training_testing regressions report
+all: data eda training_testing regressions report slides
 
 #downlaod credit.csv
 data:
@@ -54,8 +56,9 @@ regressions:
 	make lasso
 	make pcr
 	make plsr
-
+# Generate slides:
 slides:
+	Rscript -e "library(rmarkdown);library("Matrix"); library("xtable"); render('slides/report.Rmd', 'ioslides_presentation')"
 
 # Generate `session-info.txt`
 session:
@@ -69,6 +72,6 @@ $(rep): $(RMD)
 	cat $(RMD) > $(rep)
 
 # convert final report Rmd to pdf
-report: report/report.Rmd
-	Rscript -e 'library("rmarkdown");library("xtable");rmarkdown::render("$(rep)")'
+report: report/report.Rmd $(lasso_r) $(ols_r) $(pcr_r) $(plsr_r) $(ridge_r)
+	Rscript -e 'library("rmarkdown");library("Matrix");library("xtable");rmarkdown::render("$(rep)")'
 

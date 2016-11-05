@@ -5,11 +5,11 @@ output: pdf_document
 #Results
 
 ```{r, echo=FALSE}
-load("../../data/lasso_model.RData")
-load("../../data/OLS.RData")
-load("../../data/all_ridge_mods.RData")
-load("../../data/pcr_fit.RData")
-load("../../data/plsr_model.RData")
+load("../data/lasso_model.RData")
+load("../data/OLS.RData")
+load("../data/all_ridge_mods.RData")
+load("../data/pcr_fit.RData")
+load("../data/plsr_model.RData")
 library(xtable)
 library(knitr)
 
