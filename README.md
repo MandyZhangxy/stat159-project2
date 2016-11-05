@@ -11,7 +11,8 @@ stat159-project2/
 	README.md
 	LICENSE
 	Makefile
-	session-info.txt                    
+	session-info.txt
+	session.sh                    
 	code/
 		README.md
 	  	...
