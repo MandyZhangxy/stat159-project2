@@ -186,6 +186,246 @@ Xinyu Zhang, Zhongling Jiang
 <p>Last but not least, we refit the model on the <strong>full data set</strong> using the parameter chosen by cross-validation. This fit gives the “official” coefficient estimates.</p>
 <p>All output we saved and plots we got will be anaylysis in next section – <code>Results</code></p>
 </div>
+<div id="results" class="slide section level2">
+<h1>Results</h1>
+</div>
+<div id="ols" class="slide section level2">
+<h1>OLS</h1>
+At last we look at the ordinary least square regression: The coefficients of the model that includes all predictors is:
+<table border="1">
+<caption align="bottom">
+OLS coefficients
+</caption>
+<tr>
+<th>
+</th>
+<th>
+Estimate
+</th>
+<th>
+Std. Error
+</th>
+<th>
+t value
+</th>
+<th>
+Pr(&gt;|t|)
+</th>
+</tr>
+<tr>
+<td align="right">
+(Intercept)
+</td>
+<td align="right">
+0.00000
+</td>
+<td align="right">
+0.01074
+</td>
+<td align="right">
+0.00000
+</td>
+<td align="right">
+1.00000
+</td>
+</tr>
+<tr>
+<td align="right">
+Income
+</td>
+<td align="right">
+-0.59817
+</td>
+<td align="right">
+0.01796
+</td>
+<td align="right">
+-33.31357
+</td>
+<td align="right">
+0.00000
+</td>
+</tr>
+<tr>
+<td align="right">
+Limit
+</td>
+<td align="right">
+0.95844
+</td>
+<td align="right">
+0.16456
+</td>
+<td align="right">
+5.82412
+</td>
+<td align="right">
+0.00000
+</td>
+</tr>
+<tr>
+<td align="right">
+Rating
+</td>
+<td align="right">
+0.38248
+</td>
+<td align="right">
+0.16520
+</td>
+<td align="right">
+2.31522
+</td>
+<td align="right">
+0.02112
+</td>
+</tr>
+<tr>
+<td align="right">
+Cards
+</td>
+<td align="right">
+0.05286
+</td>
+<td align="right">
+0.01295
+</td>
+<td align="right">
+4.08301
+</td>
+<td align="right">
+0.00005
+</td>
+</tr>
+<tr>
+<td align="right">
+Age
+</td>
+<td align="right">
+-0.02303
+</td>
+<td align="right">
+0.01103
+</td>
+<td align="right">
+-2.08820
+</td>
+<td align="right">
+0.03743
+</td>
+</tr>
+<tr>
+<td align="right">
+Education
+</td>
+<td align="right">
+-0.00747
+</td>
+<td align="right">
+0.01086
+</td>
+<td align="right">
+-0.68767
+</td>
+<td align="right">
+0.49207
+</td>
+</tr>
+<tr>
+<td align="right">
+GenderFemale
+</td>
+<td align="right">
+-0.01159
+</td>
+<td align="right">
+0.01079
+</td>
+<td align="right">
+-1.07457
+</td>
+<td align="right">
+0.28324
+</td>
+</tr>
+<tr>
+<td align="right">
+StudentYes
+</td>
+<td align="right">
+0.27815
+</td>
+<td align="right">
+0.01093
+</td>
+<td align="right">
+25.45943
+</td>
+<td align="right">
+0.00000
+</td>
+</tr>
+<tr>
+<td align="right">
+MarriedYes
+</td>
+<td align="right">
+-0.00905
+</td>
+<td align="right">
+0.01099
+</td>
+<td align="right">
+-0.82351
+</td>
+<td align="right">
+0.41073
+</td>
+</tr>
+<tr>
+<td align="right">
+EthnicityAsian
+</td>
+<td align="right">
+0.01595
+</td>
+<td align="right">
+0.01340
+</td>
+<td align="right">
+1.19018
+</td>
+<td align="right">
+0.23470
+</td>
+</tr>
+<tr>
+<td align="right">
+EthnicityCaucasian
+</td>
+<td align="right">
+0.01101
+</td>
+<td align="right">
+0.01330
+</td>
+<td align="right">
+0.82777
+</td>
+<td align="right">
+0.40831
+</td>
+</tr>
+</table>
+<p>The R-square is 0.9551016. The Residual Standard Error is 0.2148752. We find out that among these 11 coefficients, some of them have relatively high p-value. For exmaple, the corresponding values of categorical variables <code>eduaction</code>, <code>EthnicityAisan</code> , <code>EthnicityCaucasian</code>, <code>gender</code>, <code>Married status</code> are 0.4920746, 0.2347047,0.4083088, 0.2832368,0.4107256 which are far bigger than 0.05.</p>
+<p>In addition, we also find that the absolute value of the estimated coefficient <code>Income</code>, <code>Limit</code>, and <code>Rating</code> are 0.5981715, 0.9584387, 0.3824789 which are statistically significant.</p>
+</div>
+<div id="ridge" class="slide section level2">
+<h1>Ridge</h1>
+<p>We perform ridge regresssion on the centered Credit training data, and obtain the following result: The best lambda equals 0.01, and the test mse is 0.0492226. The coefficient of fitting the full data is following:</p>
+
+<p>Using the outputs of the 10-fold cross-validation with minimum validation error, the <span class="math inline">\(\lambda\)</span> we get is <span class="math inline">\(\lambda\)</span> = 0.01. Among the 11 variables, the corresponding absoluted estimated value of <code>Income</code>, <code>Limit</code>, and <code>Rating</code> are 0.5668824, 0.7059976, and 0.6176414, which are statistically significant and thus have huge influence on the response <code>Balance</code>.</p>
+</div>
 <div id="slide-with-r-code-and-output" class="slide section level2">
 <h1>Slide with R Code and Output</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(cars)</code></pre></div>

@@ -168,20 +168,57 @@ All output we saved and plots we got will be anaylysis in next section -- `Resul
 
 
 ## Results
+```{r, echo=FALSE}
+load("../data/lasso_model.RData")
+load("../data/OLS.RData")
+load("../data/all_ridge_mods.RData")
+load("../data/pcr_fit.RData")
+load("../data/plsr_model.RData")
+library(xtable)
+library(knitr)
 
-#OLS
+```
+
+
+## OLS
 At last we look at the ordinary least square regression:
 The coefficients of the model that includes all predictors is:
 ```{r xtable5, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
 load("../data/OLS.RData")
 olscoef <- xtable(OLS_summary$coefficients, caption = "OLS coefficients",digits = c(0,5,5,5,5))
-print(olscoef,comment = FALSE)
+print(olscoef,comment = FALSE, type = "html")
 ```
 The R-square is `r OLS_summary$r.squared`. The Residual Standard Error is `r OLS_summary$sigma`. We find out that among these 11 coefficients, some of them have relatively high p-value. For exmaple, the corresponding values of categorical variables `eduaction`, `EthnicityAisan` , `EthnicityCaucasian`, `gender`, `Married status` are `r OLS_summary$coefficients["Education",4]`, `r OLS_summary$coefficients["EthnicityAsian",4]`,`r OLS_summary$coefficients["EthnicityCaucasian",4]`, `r OLS_summary$coefficients["GenderFemale",4]`,`r OLS_summary$coefficients['MarriedYes',4]` which are far bigger than 0.05. 
 
 In addition, we also find that the absolute value of the estimated coefficient `Income`, `Limit`, and `Rating` are `r abs(OLS_summary$coefficients['Income',1])`, `r OLS_summary$coefficients["Limit",1]`, `r OLS_summary$coefficients["Rating",1]` which are statistically significant. 
 
+## Ridge
+We perform ridge regresssion on the centered Credit training data, and obtain the following result:
+The best lambda equals `r ridge_best_lambda`, and the test mse is `r ridge_test_mse`.
+The coefficient of fitting the full data is following:
 
+```{r xtable1, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
+load("../data/all_ridge_mods.RData")
+ridge_coefficients = as.matrix(ridge_coef)
+colnames(ridge_coefficients) <- "Estimate"
+ridgecoef <- xtable( ridge_coefficients, caption = "Ridge Coefficients", digits = c(0,5))
+print(ridgecoef,comment = FALSE, type = "html")
+```
+
+Using the outputs of the 10-fold cross-validation with minimum validation error, the $\lambda$ we get is $\lambda$ = `r ridge_best_lambda`. Among the 11 variables, the corresponding absoluted estimated value of `Income`, `Limit`, and `Rating` are `r abs(ridge_coef["Income",1])`, `r ridge_coef["Limit",1]`, and `r ridge_coef["Rating",1]`, which are statistically significant and thus have huge influence on the response `Balance`.
+
+
+
+##Lasso
+Then we fit lasso regression on the centered Credit training data.
+The best lambda is `r lasso_best_lambdabda`, and the lasso test MSE is `r lasso_mse`.
+The refitting coefficients is the following:
+```{r xtable2, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
+lasso_coefficients = as.matrix(lasso_coef)
+colnames(lasso_coefficients) = "Estimate"
+lassocoef <- xtable(as.matrix(lasso_coef), caption = "Lasso Coefficients", digits = c(0,5))
+print(lassocoef,comment = FALSE, type = "html")
+```
 
 
 
