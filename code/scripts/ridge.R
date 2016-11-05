@@ -14,8 +14,8 @@ plot(ridge_mod)
 dev.off()
 #lambda.min is the value of λ λ that gives minimum mean cross-validated error.
 sink('../../data/ridge_coefficients.txt')
-ridge_mod$lambda.min
-coef(ridge_mod, s = "lambda.min")
+best_lambda <- ridge_mod$lambda.min
+ridge_coef <- coef(ridge_mod, s = "lambda.min")
 sink()
 #The other λ saved is lambda.1se, which gives the most regularized model such that error is within one standard error of the minimum.
 # ridge_mod$lambda.1se
@@ -42,3 +42,4 @@ cat("The coefficients of all predictors based on the best model on full dataset 
 print(result1)
 sink()
 
+save(ridge_mod, best_lambda, test_mse, out1, ridge_coef, file = '../../data/all_ridge_mods.RData')
