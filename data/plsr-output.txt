@@ -2,20 +2,17 @@
  Partial Least Squares Regression Model 
 
  best number of components in model 
-[1] 11
+[1] 4
 
  Test MSE 
-[1] 0.04915134
+[1] 0.04995513
 
  summary of plsr 
 Data: 	X dimension: 400 12 
 	Y dimension: 400 1
 Fit method: kernelpls
-Number of components considered: 11
+Number of components considered: 4
 TRAINING: % variance explained
-         1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps  8 comps
-X        99.8492    99.94    99.94    99.95    99.96    99.97    99.97    99.98
-Balance   0.0783    69.70    86.63    95.07    95.47    95.49    95.49    95.49
-         9 comps  10 comps  11 comps
-X          99.98     99.99     99.99
-Balance    95.52     95.52     95.52
+         1 comps  2 comps  3 comps  4 comps
+X        99.8492    99.94    99.94    99.95
+Balance   0.0783    69.70    86.63    95.07
