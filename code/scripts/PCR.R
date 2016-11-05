@@ -1,6 +1,6 @@
 library(pls)
 load("../../data/training_and_testing.RData")
-x=model.matrix(Balance ~.,training_set)[,-1] 
+x=model.matrix(Balance ~.,training_set)
 y=training_set$Balance
 
 #fit pcr model

@@ -1,7 +1,7 @@
 library(glmnet)
 load("../../data/training_and_testing.RData")
 # set lambda value
-x=model.matrix(Balance ~.,training_set)[,-1] 
+x=model.matrix(Balance ~.,training_set)
 y=training_set$Balance
 cvfold = 10
 grid=10^seq(10,-2,length=100)
@@ -22,7 +22,7 @@ sink()
 # coef(ridge_mod, s = "lambda.1se")
 # Caluculate mean square error on test set
 y_test = testing_set$Balance
-x_test = model.matrix(Balance ~.,testing_set)[,-1]
+x_test = model.matrix(Balance ~.,testing_set)
 ridge_mod_pred <- predict(ridge_mod, s=ridge_mod$lambda.min, newx = x_test)
 test_mse = mean((ridge_mod_pred - y_test)^2)
 sink('../../data/ridge_coefficients.txt', append = TRUE)

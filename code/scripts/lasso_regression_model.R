@@ -1,6 +1,7 @@
 library(glmnet)
 
 scaled_credit <- read.csv("../../data/scaled_credit.csv", stringsAsFactors=FALSE)
+scaled_credit = scaled_credit[,-1]
 load("../../data/training_and_testing.RData")
 
 grid = 10^seq(10, -2, length = 100)
