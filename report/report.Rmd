@@ -183,13 +183,11 @@ print(olscoef,comment = FALSE)
 ```
 The R-square is `r OLS_summary$r.squared`. The Residual Standard Error is `r OLS_summary$sigma`. We find out that among these 11 coefficients, some of them have relatively high p-value. For exmaple, the corresponding values of categorical variables `eduaction`, `EthnicityAisan` , `EthnicityCaucasian`, `gender`, `Married status` are `r OLS_summary$coefficients["Education",4]`, `r OLS_summary$coefficients["EthnicityAsian",4]`,`r OLS_summary$coefficients["EthnicityCaucasian",4]`, `r OLS_summary$coefficients["GenderFemale",4]`,`r OLS_summary$coefficients['MarriedYes',4]` which are far bigger than 0.05. 
 
-In addition, we also find that the absolute value of the estimated coefficient `Income`, `Limit`, and `Rating` are `r abs(OLS_summary$coefficients['Income',1])`, `r OLS_summary$coefficients["Limit",1]`, `r OLS_summary$coefficients["Rating",1]` which are statistically significant. 
-
-
+In addition, we also find that the absolute value of the estimated coefficient `Income`, `Limit`, and `Rating` are `r abs(OLS_summary$coefficients['Income',1])`, `r OLS_summary$coefficients["Limit",1]`, `r OLS_summary$coefficients["Rating",1]` which are statistically significant and thus make huge influence in response `balance`.
 
 ##Ridge
 We perform ridge regresssion on the centered Credit training data, and obtain the following result:
-The best lambda equals `r best_lambda`, and the test mse is `r test_mse`.
+
 The coefficient of fitting the full data is following:
 
 ```{r xtable1, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
@@ -198,42 +196,37 @@ colnames(ridge_coefficients) <- "Estimate"
 ridgecoef <- xtable( ridge_coefficients, caption = "Ridge Coefficients", digits = c(0,5))
 print(ridgecoef,comment = FALSE)
 ```
-Using the outputs of the 10-fold cross-validation with minimum validation error, the $\lambda$ we get is $\lambda$ = `r best_lambda`.
-####
 
-```{r results= 'asis', echo = FALSE}
-
-load("../data/ridge/ridge-regression.RData")
-ridge_coef_matrix <- as.matrix(ridge_coef)
-colnames(ridge_coef_matrix) <- "Estimate"
-print(xtable(ridge_coef_matrix, caption = 'Ridge Coefficients',digits = c(0,5)), comment = FALSE)
-```
-
-The hyper-parameter $\lambda$ we get from cross validation with minimum validation error is $\lambda$ = `r ridge_bestlam`. The estimated coefficients are consistent with ones we get from OLS. Income, limit and ratings still dominate the change in reponse. Other trivial variabls, like cards and gender are given less influence because of introducing l2-norm in ridge regression.
-
-
-
+Using the outputs of the 10-fold cross-validation with minimum validation error, the $\lambda$ we get is $\lambda$ = `r ridge_best_lambda` and the test mse is `r ridge_test_mse`.Among the 11 variables, the corresponding absoluted estimated value of `Income`, `Limit`, and `Rating` are `r abs(ridge_coef["Income",1])`, `r ridge_coef["Limit",1]`, and `r ridge_coef["Rating",1]`, which are statistically significant and thus have huge influence on the response `Balance`.
 
 
 
 ##Lasso
 Then we fit lasso regression on the centered Credit training data.
-The best lambda is `r best_lambda`, and the lasso test MSE is `r lasso_mse`.
 The refitting coefficients is the following:
+
 ```{r xtable2, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
-load("../../data/lasso_model.RData")
-lassocoef <- xtable(as.matrix(lasso_coef))
+lasso_coefficients = as.matrix(lasso_coef)
+colnames(lasso_coefficients) = "Estimate"
+lassocoef <- xtable(lasso_coefficients, caption = "Lasso Coefficients", digits = c(0,5))
 print(lassocoef,comment = FALSE)
 ```
-We observe some coefficients could reduce to zero because of the special regularizing term the lasso regression has.
+
+Using the outputs of the 10-fold cross-validation with minimum validation error, the $\lambda$ we get is $\lambda$ = `r lasso_best_lambdabda`, and the lasso test MSE is `r lasso_mse`.
+
+We observe some coefficients could reduce to zero because of the special regularizing term the lasso regression has. For example, `Education`, `Gender`,`Married status`, and `Ethnicity` all reduce to zero. Such reduction makes the interpretation much easier. 
 
 
 ##PCR
-Now we use a different method, the principle component methods to fit on the training data. In this case, we think the optimal number of principle components used is `r pcr_best`, and the resulting test MSE is `r pcr_mse`.
+Now we use a different method which focus on dimension reduciton by unsupervised learning -- the principle component methods to fit on the training data. In this case, we think the optimal number of principle components used is `r pcr_best`, and the resulting test MSE is `r pcr_mse`.
 The coefficients of PCR model refitting on full data set is:
 ```{r xtable3, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
-load("../../data/pcr_fit.RData")
-pcrcoef <- xtable(as.matrix(pcr.coef))
+pcr_coef = data.frame(pcr.coef)
+b = rownames(pcr_coef)[-1]
+pcr_coef = data.frame(pcr_coef[-1,])
+row.names(pcr_coef) <- b
+colnames(pcr_coef) = "Estimate"
+pcrcoef <- xtable(pcr_coef, caption = "PCR Coefficients",digits = c(0,5))
 print(pcrcoef,comment = FALSE)
 ```
 
@@ -241,12 +234,11 @@ print(pcrcoef,comment = FALSE)
 We slightly change our method to PLSR. The optimal number of principle components is `r plsr_best`, and the resulting test MSE is `r plsr_mse`
 The coefficient of refitting PLSR model on full dataset is:
 ```{r xtable4, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
-load("../../data/plsr_model.RData")
-plsrcoef <- xtable(as.matrix(plsr_coef))
+plsr_coef = data.frame(plsr_coef)
+colnames(plsr_coef) = "Estimate"
+plsrcoef <- xtable(plsr_coef, caption = "PLSR Coefficients", digits = c(0,5))
 print(plsrcoef,comment = FALSE)
 ```
-
-
 
 
 
