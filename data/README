@@ -1,3 +1,5 @@
 Data
 
 The data folder contains the Credit.csv dataset. It also containcs necessary key data objects (in .RData file) produced during modeling process and summary data (in .txt file.)
+
+Credit gives to Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani, and the source of `Advertising.csv` is [http://www-bcf.usc.edu/~gareth/ISL/Credit.csv](http://www-bcf.usc.edu/~gareth/ISL/Credit.csv).
