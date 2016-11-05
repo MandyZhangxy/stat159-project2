@@ -2,7 +2,6 @@ library(pls)
 scaled_credit <- read.csv("../../data/scaled_credit.csv", stringsAsFactors=FALSE)
 load("../../data/training_and_testing.RData")
 
-set.seed(200)
 plsr_cv = plsr(Balance ~., data = data.frame(training_set), validation = "CV")
 summary(plsr_cv)
 

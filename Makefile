@@ -23,7 +23,9 @@ eda:
 training_testing:
 	cd code/scripts/ && Rscript training_and_testing.R
 
+# run the unit tests of functions
 test:
+	cd code/ && Rscript "test-that.R"
 
 # perform ols and save in Rdata
 ols:
@@ -31,6 +33,7 @@ ols:
 
 # perform ridge model and save in Rdata
 ridge:
+	cd code/scripts/ && Rscript ridge.R
 
 # perform lasso model and save in Rdata
 lasso:
@@ -38,6 +41,7 @@ lasso:
 
 # perform pcr model and save in Rdata
 pcr:
+	cd code/scripts/ && Rscript PCR.R
 
 #perform plsr model and save in Rdata
 plsr:
@@ -53,8 +57,9 @@ regressions:
 
 slides:
 
-sesison:
-
+# Generate `session-info.txt`
+session:
+	bash session.sh
 
 clean:
 	rm -f report/report.pdf

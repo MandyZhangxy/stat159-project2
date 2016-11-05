@@ -1,5 +1,5 @@
 library(glmnet)
-# setwd("/Users/MandyZhang/Desktop/stat_159/project2/")
+
 scaled_credit <- read.csv("../../data/scaled_credit.csv", stringsAsFactors=FALSE)
 load("../../data/training_and_testing.RData")
 

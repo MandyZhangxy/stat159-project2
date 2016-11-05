@@ -1,0 +1,26 @@
+Data: 	X dimension: 300 11 
+	Y dimension: 300 1
+Fit method: svdpc
+Number of components considered: 11
+
+VALIDATION: RMSEP
+Cross-validated using 10 random segments.
+       (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps  6 comps
+CV           1.014    1.019   0.5778   0.5609   0.4980   0.4814   0.4534
+adjCV        1.014    1.018   0.5749   0.5598   0.4853   0.4824   0.4410
+       7 comps  8 comps  9 comps  10 comps  11 comps
+CV      0.4380   0.4313   0.4294    0.4286    0.4299
+adjCV   0.4351   0.4270   0.4286    0.4278    0.4291
+
+TRAINING: % variance explained
+         1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps  8 comps
+X        99.9244    99.94    99.95    99.96    99.97    99.98    99.98    99.99
+Balance   0.1154    67.99    70.45    78.07    78.29    81.95    82.17    82.91
+         9 comps  10 comps  11 comps
+X         100.00    100.00    100.00
+Balance    83.06     83.19     83.25
+
+ The lowest MSE: 
+[1] 55.10884
+
+ which corresponds to using 12 components
