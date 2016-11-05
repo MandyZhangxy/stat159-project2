@@ -44,7 +44,7 @@ Using the outputs of the 10-fold cross-validation with minimum validation error,
 
 
 
-##Lasso
+## Lasso
 Then we fit lasso regression on the centered Credit training data.
 The refitting coefficients is the following:
 
@@ -97,7 +97,10 @@ print(aa, comment = FALSE)
 
 ## Comparing the MSE of 5 regression Models
 
-
-
-
-
+```{r xtable7, results="asis", echo = FALSE, warning = FALSE, comment = FALSE, message = FALSE}
+house2 = cbind(ols_MSE, ridge_test_mse,lasso_mse,pcr_mse,plsr_mse)
+row.names(house2) = "MSE"
+colnames(house2) = c("ols", "ridge","lasso","pcr","plsr")
+bb = xtable(house2, caption = "MSE estiamtes for 5 regression models", digits = c(0,3,3,3,3,3))
+print(bb, comment = FALSE)
+```
