@@ -6,27 +6,28 @@ lm(formula = Balance ~ ., data = scaled_credit)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--1.43222 -0.25449 -0.00438  0.29597  0.96350 
+-0.36210 -0.16882 -0.03125  0.12226  0.68844 
 
 Coefficients:
                      Estimate Std. Error t value Pr(>|t|)    
-(Intercept)        -5.657e-03  4.277e-02  -0.132 0.894847    
-X                   2.821e-05  1.855e-04   0.152 0.879210    
-Limit               8.432e-01  3.233e-01   2.608 0.009446 ** 
-Rating              2.856e-02  3.239e-01   0.088 0.929782    
-Cards               8.674e-02  2.537e-02   3.419 0.000695 ***
-Age                -8.293e-02  2.142e-02  -3.871 0.000127 ***
-Education          -2.209e-04  2.134e-02  -0.010 0.991744    
-GenderFemale        1.637e-03  2.133e-02   0.077 0.938870    
-StudentYes          2.628e-01  2.145e-02  12.250  < 2e-16 ***
-MarriedYes         -1.939e-02  2.160e-02  -0.898 0.369906    
-EthnicityAsian      1.234e-02  2.633e-02   0.469 0.639589    
-EthnicityCaucasian  1.958e-02  2.618e-02   0.748 0.454996    
+(Intercept)        -1.790e-02  2.177e-02  -0.822   0.4115    
+X                   8.928e-05  9.446e-05   0.945   0.3452    
+Income             -5.985e-01  1.796e-02 -33.321  < 2e-16 ***
+Limit               9.565e-01  1.646e-01   5.811  1.3e-08 ***
+Rating              3.845e-01  1.652e-01   2.327   0.0205 *  
+Cards               5.320e-02  1.295e-02   4.107  4.9e-05 ***
+Age                -2.362e-02  1.105e-02  -2.138   0.0332 *  
+Education          -7.466e-03  1.086e-02  -0.687   0.4924    
+GenderFemale       -1.039e-02  1.087e-02  -0.956   0.3396    
+StudentYes          2.784e-01  1.093e-02  25.472  < 2e-16 ***
+MarriedYes         -9.316e-03  1.100e-02  -0.847   0.3976    
+EthnicityAsian      1.600e-02  1.340e-02   1.194   0.2333    
+EthnicityCaucasian  1.012e-02  1.333e-02   0.759   0.4483    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.4222 on 388 degrees of freedom
-Multiple R-squared:  0.8267,	Adjusted R-squared:  0.8218 
-F-statistic: 168.3 on 11 and 388 DF,  p-value: < 2.2e-16
+Residual standard error: 0.2149 on 387 degrees of freedom
+Multiple R-squared:  0.9552,	Adjusted R-squared:  0.9538 
+F-statistic: 687.7 on 12 and 387 DF,  p-value: < 2.2e-16
 
 

@@ -89,5 +89,4 @@ new_credit <- cbind(temp_credit[,-c(1,2)], Balance = Credit_copy$Balance)
 ##remember to save this object
 ## Mean clustering and Standardizing
 scaled_credit <- scale(new_credit, center = TRUE, scale = TRUE)
-scaled_credit = scaled_credit[ ,-1]
 write.csv(scaled_credit, file = "../../data/scaled_credit.csv")

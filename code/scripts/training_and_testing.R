@@ -1,6 +1,6 @@
 #read in the scaled data
 scaled_credit = read.csv("../../data/scaled_credit.csv", stringsAsFactors=FALSE)
-
+scaled_credit = scaled_credit[,-1]
 #split into training and testing set
 set.seed(200)
 sample_size = 300

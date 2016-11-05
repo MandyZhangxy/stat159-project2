@@ -1,4 +1,6 @@
 
+#Results 
+
 ```{r, echo = False}
 # Results
 
@@ -9,4 +11,13 @@ load("../data/pcr_fit.RData")
 load("../data/plsr_model.RData")
 library("xtable")
 library("knitr")
+```
+
+##Ridge
+We perform ridge regresssion on the centered Credit data, and obtain the following result:
+The best lambda equals `r best_lambda`, and the test mse is `r test_mse`.
+The coefficient of fitting the full data is following:
+```{r xtable3, results = 'asis', echo = FALSE, warning=FALSE, comment= FALSE, message=FALSE}
+ridge_coef <- xtable(ridge_coef)
+print(ridge_coef)
 ```

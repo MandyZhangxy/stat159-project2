@@ -6,21 +6,21 @@ Number of components considered: 11
 VALIDATION: RMSEP
 Cross-validated using 10 random segments.
        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps  6 comps
-CV           1.014    1.019   0.5778   0.5609   0.4980   0.4814   0.4534
-adjCV        1.014    1.018   0.5749   0.5598   0.4853   0.4824   0.4410
+CV           1.014   0.6668   0.6635   0.6474   0.6450   0.5995   0.5871
+adjCV        1.014   0.6663   0.6633   0.6369   0.6435   0.5989   0.5790
        7 comps  8 comps  9 comps  10 comps  11 comps
-CV      0.4380   0.4313   0.4294    0.4286    0.4299
-adjCV   0.4351   0.4270   0.4286    0.4278    0.4291
+CV      0.5822   0.5759   0.5789    0.2182    0.2183
+adjCV   0.5802   0.5751   0.5781    0.2178    0.2179
 
 TRAINING: % variance explained
          1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps  8 comps
-X        99.9244    99.94    99.95    99.96    99.97    99.98    99.98    99.99
-Balance   0.1154    67.99    70.45    78.07    78.29    81.95    82.17    82.91
+X          26.04    40.27    50.49    60.19    69.37    77.97    86.47    93.99
+Balance    56.69    57.38    62.87    62.94    66.84    68.91    69.29    69.90
          9 comps  10 comps  11 comps
-X         100.00    100.00    100.00
-Balance    83.06     83.19     83.25
+X          97.73     99.98     100.0
+Balance    69.97     95.67      95.7
 
  The lowest MSE: 
-[1] 55.10884
+[1] 14.28836
 
  which corresponds to using 12 components

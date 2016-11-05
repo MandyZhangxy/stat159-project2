@@ -1,7 +1,7 @@
 The coefficients of all predictors based on the best model on full dataset 
-       (Intercept)                  X              Limit             Rating 
-     -4.949745e-03       2.468701e-05       4.273736e-01       4.081038e-01 
-             Cards                Age          Education       GenderFemale 
-      6.431709e-02      -7.360678e-02       1.679009e-03       2.633120e-03 
-        StudentYes         MarriedYes     EthnicityAsian EthnicityCaucasian 
-      2.396796e-01      -1.990734e-02       1.103178e-02       1.549304e-02 
+   (Intercept)              X         Income          Limit         Rating 
+ -1.314217e-02   6.554698e-05  -3.969228e-01   5.747595e-01   5.589421e-01 
+         Cards            Age      Education   GenderFemale     StudentYes 
+  4.742338e-02  -3.628408e-02  -3.226314e-03  -4.468988e-03   2.495692e-01 
+    MarriedYes EthnicityAsian 
+ -1.300464e-02   1.253206e-02 
